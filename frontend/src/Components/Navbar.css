@@ -1,0 +1,71 @@
+.navbar {
+    width: 100%;
+    height: 50px;
+    /* position: fixed; */
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    align-items: center;
+    margin: auto;
+    background-color:lightcoral;
+    /* z-index: 100; */
+
+}
+
+.logo {
+    color: white;
+    font-size: 25px;
+    font-weight: 200;
+    text-decoration: none;
+    cursor: pointer;
+
+}
+
+
+.links {
+    color: white;
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+    list-style: none;
+
+
+}
+
+.about
+ {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    padding: 10px 20px;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.about a {
+    color: white;
+
+}
+
+.about a::after {
+    content: "";
+    width: 0;
+    height: 3px;
+    background-color: white;
+    margin: auto;
+    display: block;
+    margin-top: 5px;
+}
+
+.about a:hover::after {
+    width: 100%;
+    transition: width 0.2s linear;
+}
+
+
+a {
+    text-decoration: none;
+}
+
+
+
