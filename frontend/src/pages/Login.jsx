@@ -30,7 +30,7 @@ const navigate=useNavigate()
           pass,
       }
       //console.log(payload)
-      fetch("https://daylogic-s1id.onrender.com/users/login", {
+      fetch("http://localhost:8000/users/login", {
           method: "POST",
           body: JSON.stringify(payload),
           headers: {

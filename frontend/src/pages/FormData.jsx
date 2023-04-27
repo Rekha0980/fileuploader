@@ -18,15 +18,18 @@ import { MdOutlineDelete } from "react-icons/md"
 import { FiEdit3 } from "react-icons/fi"
 import { useNavigate } from 'react-router-dom';
 import "./formdata.css"
+import axios from "axios"
 
 export default function FormData() {
 
 
     const [note, setNote] = useState([])
     const navigate = useNavigate()
+    const [flag, setFlag] = useState(false)
+    const [imag, setImgage] = useState("")
 
     const getNotes = () => {
-        fetch("https://daylogic-s1id.onrender.com/data/", {
+        fetch("http://localhost:8000/data/", {
             headers: {
                 "Autherization": localStorage.getItem("token")
             }
@@ -44,7 +47,7 @@ export default function FormData() {
 
 
     const handledelete = (Id) => {
-        fetch(`https://daylogic-s1id.onrender.com/data/${Id}`, {
+        fetch(`http://localhost:8000/data/${Id}`, {
             method: "DELETE",
             headers: {
                 "Autherization": localStorage.getItem("token")
@@ -57,6 +60,19 @@ export default function FormData() {
             })
             .catch(err => console.log(err))
 
+    }
+
+
+    const getimage = (id) => {
+        axios.get(`http://localhost:8000/data/${id}/img`, { responseType: 'arraybuffer' })
+            .then(response => {
+                const imaag = new Blob([response.data], { type: 'image/jpeg' });
+                //console.log(imaag)
+                setImgage(imaag);
+            }).catch(error => {
+                console.error(error);
+                alert('Error');
+            });
     }
 
     return (
@@ -79,9 +95,16 @@ export default function FormData() {
                                 <Tr key={el._id}>
                                     <Td>{el.title}</Td>
                                     <Td>{el.description}</Td>
-                                    <Td>{el.image.filename}</Td>
-                                    <Th><MdOutlineDelete size={"20px"} color='black' onClick={() => handledelete(el._id)}  /></Th>
-                                    <Th><Link to={`/update/${el._id}`}><FiEdit3 size={"20px"} color='black'/></Link></Th>
+                                    <Td onClick={() => getimage(el._id)}>view</Td>
+                                    <Td>
+                                        {imag &&
+                                            <object data={URL.createObjectURL(imag)} accept="image/jpeg" width="100%" height="100%" >
+                                                <p>Unable to display image.</p>
+                                            </object>
+                                        }
+                                    </Td>
+                                    <Th><MdOutlineDelete size={"20px"} color='black' onClick={() => handledelete(el._id)} /></Th>
+                                    <Th><Link to={`/update/${el._id}`}><FiEdit3 size={"20px"} color='black' /></Link></Th>
                                 </Tr>
                             ))
                         }
@@ -89,7 +112,7 @@ export default function FormData() {
 
                 </Table>
             </TableContainer>
-            <Link to="/add"><Button  marginTop={"20px"} backgroundColor="rgb(106, 90, 205)" _hover={"none"}>Add</Button></Link>
+            <Link to="/add"><Button marginTop={"20px"} backgroundColor="rgb(106, 90, 205)" _hover={"none"}>Add</Button></Link>
         </Box>
     );
 }
