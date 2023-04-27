@@ -1,41 +1,54 @@
-import { Button, Input } from "@chakra-ui/react"
+import { Button, Heading, Input ,Box } from "@chakra-ui/react"
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import axios from "axios"
 
-const Add=()=>{
-    const[title,setTitle]=useState("")
-    const[desc,setDesc]=useState("")
-    const [category,setCategory]=useState("")
-    const handlesubmit=()=>{
-        const payload={
-            title,
-            desc,
-            category,
+const Add = () => {
+    const [title, setTitle] = useState("")
+    const [description, setDesc] = useState("")
+    const [file, setFile] = useState("")
+    const navigate=useNavigate()
+
+    const handlesubmit = () => {
+        if(!title||!description||!file){
+            alert("required")
+            navigate("/add")
             
         }
-        //console.log(payload)
-        fetch("http://localhost:8000/data/upload",{
-            method:"POST",
-            body:JSON.stringify(payload),
-            headers:{
-                "Content-type":"application/json",
-                "Autherization":localStorage.getItem("token")
-            }
-        })
-        .then(res=>console.log(res))
-        .catch(err=>console.log(err))
+        else{
+        const formData = new FormData();
+        formData.append('image', file);
+        formData.append("title", title)
+        formData.append("description", description)
+        const headers = {
+            'Content-Type': 'multipart/form-data',
+            'Authorization': localStorage.getItem("token")
+        };
+
+        axios.post('https://daylogic-s1id.onrender.com/data/upload', formData, { headers })
+            .then(res => {
+                alert("file uploaded")
+navigate("/alldata")
+                console.log(res.data);
+            })
+            .catch(err => {
+                console.error(err);
+            });
+        }
     }
- 
-    
-    return(
+
+
+    return (
         <div>
-            <h3>Create Your Notes</h3>
-            <Input type="text" placeholder="Enter Title" value={title} onChange={(e)=>setTitle(e.target.value)}/>
-            <Input type="text" placeholder="Enter Description" value={desc} onChange={(e)=>setDesc(e.target.value)}/>
-            <Input type="file" value={category} onChange={(e)=>setCategory(e.target.value)}/>
-       <Link to={"/"}><Button onClick={handlesubmit}>Submit</Button></Link> 
+            <Heading>Add your data</Heading>
+            <Box width="40%" margin={"auto"} marginTop={"30px"}>
+                <Input type="text" name="title" placeholder="Enter Title" isRequired value={title} onChange={(e) => setTitle(e.target.value)} />
+                <Input type="text" name="description"  marginTop={"10px"}isRequired placeholder="Enter Description" value={description} onChange={(e) => setDesc(e.target.value)} />
+                <Input type="file" name="image"  marginTop={"10px"} isRequired accept="image/*" onChange={(e) => setFile(e.target.files[0])} />
+                <Button  marginTop={"10px"} onClick={handlesubmit}>Submit</Button>
+                </Box>
         </div>
     )
 }
 
-export {Add}
+export { Add }

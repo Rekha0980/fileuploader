@@ -36,7 +36,7 @@ export default function SignupCard() {
             pass,
         }
         //console.log(payload)
-        fetch("http://localhost:8000/users/register", {
+        fetch("https://daylogic-s1id.onrender.com/users/register", {
             method: "POST",
             body: JSON.stringify(payload),
             headers: {

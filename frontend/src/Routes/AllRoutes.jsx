@@ -5,6 +5,7 @@ import Login from '../pages/Login'
 import Home from '../pages/Home'
 import FormData from '../pages/FormData'
 import { Add } from '../pages/Add'
+import Update from '../pages/Update'
 
 
 const AllRoutes = () => {
@@ -16,6 +17,7 @@ const AllRoutes = () => {
                 <Route path="/signup" element={<SignupCard />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/add" element={<Add/>} />
+                <Route path="/update/:id" element={<Update/>}/>
                 
 
             </Routes>
