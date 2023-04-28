@@ -74,7 +74,8 @@ export default function FormData() {
                             <Th>Name</Th>
                             <Th>Description</Th>
                             <Th>Image Url</Th>
-                            <Th>Actions</Th>
+                            <Th>Delete</Th>
+                            <Th>Update</Th>
 
                         </Tr>
                     </Thead>
