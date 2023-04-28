@@ -25,11 +25,10 @@ export default function FormData() {
 
     const [note, setNote] = useState([])
     const navigate = useNavigate()
-    const [flag, setFlag] = useState(false)
-    const [imag, setImgage] = useState("")
+
 
     const getNotes = () => {
-        fetch("http://localhost:8000/data/", {
+        fetch("https://daylogic-s1id.onrender.com/data/", {
             headers: {
                 "Autherization": localStorage.getItem("token")
             }
@@ -47,7 +46,7 @@ export default function FormData() {
 
 
     const handledelete = (Id) => {
-        fetch(`http://localhost:8000/data/${Id}`, {
+        fetch(`https://daylogic-s1id.onrender.com/data/${Id}`, {
             method: "DELETE",
             headers: {
                 "Autherization": localStorage.getItem("token")
@@ -63,17 +62,7 @@ export default function FormData() {
     }
 
 
-    const getimage = (id) => {
-        axios.get(`http://localhost:8000/data/${id}/img`, { responseType: 'arraybuffer' })
-            .then(response => {
-                const imaag = new Blob([response.data], { type: 'image/jpeg' });
-                //console.log(imaag)
-                setImgage(imaag);
-            }).catch(error => {
-                console.error(error);
-                alert('Error');
-            });
-    }
+
 
     return (
 
@@ -95,16 +84,11 @@ export default function FormData() {
                                 <Tr key={el._id}>
                                     <Td>{el.title}</Td>
                                     <Td>{el.description}</Td>
-                                    <Td onClick={() => getimage(el._id)}>view</Td>
-                                    <Td>
-                                        {imag &&
-                                            <object data={URL.createObjectURL(imag)} accept="image/jpeg" width="100%" height="100%" >
-                                                <p>Unable to display image.</p>
-                                            </object>
-                                        }
-                                    </Td>
-                                    <Th><MdOutlineDelete size={"20px"} color='black' onClick={() => handledelete(el._id)} /></Th>
-                                    <Th><Link to={`/update/${el._id}`}><FiEdit3 size={"20px"} color='black' /></Link></Th>
+                                    <Link to={`/image/${el._id}`}><Td >view</Td></Link>
+                                    {/* <Td onClick={() => getimage(el._id)}>view</Td> */}
+                                  
+                                    <Td><MdOutlineDelete size={"20px"} color='black' cursor={"pointer"} onClick={() => handledelete(el._id)} /></Td>
+                                    <Td><Link to={`/update/${el._id}`}><FiEdit3 data={el} size={"20px"} color='black' /></Link></Td>
                                 </Tr>
                             ))
                         }

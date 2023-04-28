@@ -6,6 +6,7 @@ import Home from '../pages/Home'
 import FormData from '../pages/FormData'
 import { Add } from '../pages/Add'
 import Update from '../pages/Update'
+import { Viewimage } from '../pages/Viewimage'
 
 
 const AllRoutes = () => {
@@ -18,7 +19,7 @@ const AllRoutes = () => {
                 <Route path="/login" element={<Login />} />
                 <Route path="/add" element={<Add/>} />
                 <Route path="/update/:id" element={<Update/>}/>
-                {/* <Route path="/image" element={<Update/>}/> */}
+                <Route path="/image/:id" element={<Viewimage/>}/>
                 
 
             </Routes>

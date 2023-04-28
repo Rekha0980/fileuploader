@@ -13,7 +13,7 @@
 
 .styled_table th,
 .styled-tabletd {
-    padding: 12px 15px;
+    padding: 10px 15px;
     color: white;
 }
 
@@ -26,5 +26,5 @@
 }
 
 .styled_table tbody tr:last-of-type {
-    border-bottom: 2px solid rgb(106, 90, 205);
+    border-bottom: 5px solid rgb(106, 90, 205);
 }

@@ -26,7 +26,7 @@ const Add = () => {
                 'Authorization': localStorage.getItem("token")
             };
 
-            axios.post('http://localhost:8000/data/upload', formData, { headers })
+            axios.post('https://daylogic-s1id.onrender.com/data/upload', formData, { headers })
                 .then(res => {
                     alert("file uploaded")
                     navigate("/alldata")
