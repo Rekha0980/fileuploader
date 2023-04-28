@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { useLocation, useNavigate, useParams, Link } from "react-router-dom"
-import { Button, Input ,Box} from "@chakra-ui/react"
+import { Button, Input ,Box, Heading} from "@chakra-ui/react"
 
 
 
@@ -67,6 +67,7 @@ useEffect(() => {
 
   return (
     <Box width={"50%"} margin={"auto"}>
+        <Heading marginBottom={"30px"}>Update your data</Heading>
     <form onSubmit={handleSubmit}>
         <Input type="text" value={title} placeholder="Enter Title" onChange={(event) => setTitle(event.target.value)} />
         <Input value={description} placeholder="Enter Description" onChange={(event) => setDescription(event.target.value)} />
