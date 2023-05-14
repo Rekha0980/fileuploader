@@ -1,0 +1,15 @@
+.card1{
+margin-left: 20px;
+display: flex;
+margin-left: 80px;
+
+}
+
+h1{
+    text-align: left;
+margin-left: 80px;}
+
+h1+h1{
+    text-align: left;
+    
+}

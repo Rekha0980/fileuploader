@@ -1,0 +1,140 @@
+.serv {
+    margin-top: 80px;
+    padding-bottom: 60px;
+    padding-top: 50px;
+    /* border:1px solid teal; */
+    background-image: url(https://images.unsplash.com/photo-1600267175161-cfaa711b4a81?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80)
+   
+}
+
+.serv1 {
+    width: 70%;
+    margin: auto;
+    /* border: 1px solid red; */
+}
+
+.serv2 {
+    display: flex;
+    /* border: 1px solid blue; */
+}
+
+h3 {
+    font-weight: 700;
+    padding: 2px;
+    font-size: medium;
+    color: white;
+    align-items: flex-start;
+}
+
+.servgrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 13px;
+    align-content: center;
+    margin-top: 40px;
+    
+}
+
+.servgrid div {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.servname {
+    font-size: 15px;
+}
+
+h4+h4 {
+    font-size: 13px;
+    text-align: justify;
+}
+h1{
+    text-align: left;
+    font-weight:300;
+   
+    
+}
+h1+h1{
+    text-align: left;
+    font-weight:600;
+  margin-top: -15px;
+    
+}
+
+.servgrid div:hover{
+    background:#f2bb07;
+    color: white;
+    
+}
+/* .icon:hover{
+    color: white;
+}*/
+.icon{
+    /* color: #f2bb07; */
+    margin-left: 100px;
+    color: black;
+    height: 100px;
+} 
+.icon:hover{
+    color: white;
+}
+h3{
+    font-size:larger;
+   
+}
+@media all and (min-width:100px) and (max-width:450px){
+    .serv1 {
+        width: 90%;
+       
+    }
+    .servgrid {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 13px;
+       
+    }
+    .icon{
+        margin-left: 90px;
+    }
+    /* h1{
+        font-size:25px ;
+    } */
+   
+}
+
+@media all and (min-width:451px) and (max-width:770px){
+    .serv1 {
+        width: 90%;
+       }
+    .servgrid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        
+    }
+
+    h1{
+       
+        font-weight:300;
+        
+        
+    }
+  
+}
+
+
+@media all and (min-width:771px) and (max-width:1024px){
+    .serv1 {
+        width: 90%;
+    }
+    .servgrid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+      
+    }
+    .icon{
+        margin-left: 80px;
+    }
+}
